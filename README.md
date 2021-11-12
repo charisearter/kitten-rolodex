@@ -1,3 +1,3 @@
 React Basics:
 
-Create
+Refreshing React basics and concepts by building simple app
