@@ -2,12 +2,12 @@ import { Component } from 'react';
 
 class Card extends Component {
 	render() {
-		const { name, email, id } = this.kitten;
+		const { name, email, id } = this.props.kitty;
 		return (
 			<div className='card-container'>
 				<div className='card'>
 					<img
-						src={`https://robohash.org/${id}?set=set4&size180x180`}
+						src={`https://robohash.org/${id}?set=set4&size=180x180`}
 						alt={`${name} Kitty`}
 					/>
 					<div className='card-content'>
