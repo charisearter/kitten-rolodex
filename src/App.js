@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import SearchBox from './components/search-box/search-box.component';
 import './App.css';
 
 class App extends Component {
@@ -38,13 +39,9 @@ class App extends Component {
 		});
 		return (
 			<div className='App'>
-				<h1>Hi</h1>
-				<input
-					className='search-box'
-					type='text'
-					placeholder='Search Kittens'
-					onChange={onSearchChange}
-				/>
+        <h1>Hi</h1>
+        <SearchBox onChangeHandler={onSearchChange} />
+	
 				{filteredKittens.map((kitty) => {
 					return <h2 key={kitty.id}> {kitty.name} </h2>;
 				})}
