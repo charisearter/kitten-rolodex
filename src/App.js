@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import Header from './components/Header/header.component';
 import SearchBox from './components/search-box/search-box.component';
 import CardList from './components/card-list/card-list.component';
 import './App.css';
@@ -41,11 +42,9 @@ class App extends Component {
 		});
 		return (
 			<div className='App'>
-				<h1>Hi</h1>
-
+				<Header className='header title' title='Kitten Rolodex' />
 				<SearchBox onChangeHandler={onSearchChange} />
-        <CardList kittens={filteredKittens} />
-		
+				<CardList kittens={filteredKittens} />
 			</div>
 		);
 	}
