@@ -10,14 +10,12 @@ const App = () => {
 	const [filteredKittens, setFilteredKittens] = useState(kittens); // filtered data
 
 	useEffect(() => {
-		console.log('runs first time mounted');
 		fetch('https://jsonplaceholder.typicode.com/users')
 			.then((res) => res.json())
 			.then((kittens) => setKittens(kittens));
 	}, []);
 
 	useEffect(() => {
-		console.log('filtered array change');
 		const newFilteredKittens = () =>
 			kittens.filter((kitty) => {
 				return kitty.name.toLowerCase().includes(searchField);
