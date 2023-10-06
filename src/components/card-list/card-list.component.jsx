@@ -2,9 +2,9 @@ import { Component } from 'react';
 
 class CardList extends Component {
 	render() {
-		const { kittens } = this.props;
+		const { kittens, className } = this.props;
 		return (
-			<div className='card-list container'>
+			<div className={className}>
 				{kittens.map((kitty) => {
 					return <h2 key={kitty.id}> {kitty.name} </h2>;
 				})}

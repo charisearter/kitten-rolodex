@@ -44,7 +44,7 @@ class App extends Component {
 			<div className='App'>
 				<Header className='header title' title='Kitten Rolodex' />
 				<SearchBox onChangeHandler={onSearchChange} />
-				<CardList kittens={filteredKittens} />
+				<CardList className='card-list container' kittens={filteredKittens} />
 			</div>
 		);
 	}
