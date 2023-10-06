@@ -2,11 +2,11 @@ import { Component, Fragment } from 'react';
 
 class SearchBox extends Component {
 	render() {
-		const { onChangeHandler } = this.props;
+		const { onChangeHandler, className } = this.props;
 		return (
 			<Fragment>
 				<input
-					className='search-box'
+					className={className}
 					type='text'
 					placeholder='Search Kittens'
 					onChange={onChangeHandler}
