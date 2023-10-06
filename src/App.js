@@ -7,6 +7,7 @@ class App extends Component {
 
 		this.state = {
 			kittens: [],
+			searchField: '',
 		};
 	}
 
@@ -19,8 +20,22 @@ class App extends Component {
 				});
 			});
 	}
+
+	onSearchChange = (e) => {
+		const searchField = e.target.value.toLocaleLowerCase();
+
+		this.setState(() => {
+			return { searchField };
+		});
+	};
+
 	render() {
-		const { kittens } = this.state;
+		const { kittens, searchField } = this.state;
+		const { onSearchChange } = this;
+
+		const filteredKittens = kittens.filter((kitty) => {
+			return kitty.name.toLowerCase().includes(searchField);
+		});
 		return (
 			<div className='App'>
 				<h1>Hi</h1>
@@ -28,19 +43,9 @@ class App extends Component {
 					className='search-box'
 					type='text'
 					placeholder='Search Kittens'
-					onChange={(e) => {
-						const searchField = e.target.value.toLocaleLowerCase();
-
-						const filteredKittens = kittens.filter((kitty) => {
-							return kitty.name.toLowerCase().includes(searchField);
-            })
-            
-            this.setState(() => {
-              return { kittens: filteredKittens }
-            })
-					}}
+					onChange={onSearchChange}
 				/>
-				{kittens.map((kitty) => {
+				{filteredKittens.map((kitty) => {
 					return <h2 key={kitty.id}> {kitty.name} </h2>;
 				})}
 			</div>
