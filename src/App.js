@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import SearchBox from './components/search-box/search-box.component';
+import CardList from './components/card-list/card-list.component';
 import './App.css';
 
 class App extends Component {
@@ -22,6 +23,7 @@ class App extends Component {
 			});
 	}
 
+	// Search Functionality
 	onSearchChange = (e) => {
 		const searchField = e.target.value.toLocaleLowerCase();
 
@@ -39,12 +41,11 @@ class App extends Component {
 		});
 		return (
 			<div className='App'>
-        <h1>Hi</h1>
-        <SearchBox onChangeHandler={onSearchChange} />
-	
-				{filteredKittens.map((kitty) => {
-					return <h2 key={kitty.id}> {kitty.name} </h2>;
-				})}
+				<h1>Hi</h1>
+
+				<SearchBox onChangeHandler={onSearchChange} />
+        <CardList kittens={filteredKittens} />
+		
 			</div>
 		);
 	}
