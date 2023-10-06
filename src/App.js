@@ -1,53 +1,43 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './components/Header/header.component';
 import SearchBox from './components/search-box/search-box.component';
 import CardList from './components/card-list/card-list.component';
 import './App.css';
 
-class App extends Component {
-	constructor() {
-		super();
+const App = () => {
+	const [kittens, setKittens] = useState([]); // initial data
+	const [searchField, setSearchField] = useState(''); // for searches
+	const [filteredKittens, setFilteredKittens] = useState(kittens); // filtered data
 
-		this.state = {
-			kittens: [],
-			searchField: '',
-		};
-	}
-
-	componentDidMount() {
+	useEffect(() => {
+		console.log('runs first time mounted');
 		fetch('https://jsonplaceholder.typicode.com/users')
 			.then((res) => res.json())
-			.then((kittens) => {
-				this.setState(() => {
-					return { kittens };
-				});
+			.then((kittens) => setKittens(kittens));
+	}, []);
+
+	useEffect(() => {
+		console.log('filtered array change');
+		const newFilteredKittens = () =>
+			kittens.filter((kitty) => {
+				return kitty.name.toLowerCase().includes(searchField);
 			});
-	}
+		setFilteredKittens(newFilteredKittens);
+	}, [kittens, searchField]);
 
 	// Search Functionality
-	onSearchChange = (e) => {
-		const searchField = e.target.value.toLocaleLowerCase();
-
-		this.setState(() => {
-			return { searchField };
-		});
+	const onSearchChange = (e) => {
+		const searchFieldString = e.target.value.toLowerCase();
+		setSearchField(searchFieldString);
 	};
 
-	render() {
-		const { kittens, searchField } = this.state;
-		const { onSearchChange } = this;
-
-		const filteredKittens = kittens.filter((kitty) => {
-			return kitty.name.toLowerCase().includes(searchField);
-		});
-		return (
-			<div className='App'>
-				<Header className='app-title' title='Kitten Rolodex' />
-				<SearchBox className='search-box' onChangeHandler={onSearchChange} />
-				<CardList className='card-list container' kittens={filteredKittens} />
-			</div>
-		);
-	}
-}
+	return (
+		<div className='App'>
+			<Header className='app-title' title='Kitten Rolodex' />
+			<SearchBox className='search-box' onChangeHandler={onSearchChange} />
+			<CardList className='card-list container' kittens={filteredKittens} />
+		</div>
+	);
+};
 
 export default App;
