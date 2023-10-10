@@ -1,7 +1,17 @@
 .card-list {
-  width: 85vw;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 20px;
+	width: 85vw;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-gap: 20px;
+}
+
+h2 {
+	color: #dc5f00;
+	font-size: 28px;
+	font-weight: 800;
+}
+
+p {
+  font-size: 25px;
 }
